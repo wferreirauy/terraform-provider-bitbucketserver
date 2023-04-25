@@ -1,8 +1,10 @@
 # Resource: bitbucketserver_repository_postwebhook
 
 Manage a repository level Post Webhook. Extends what Bitbucket does every time a repository or pull request occurs, for example when code is pushed or a pull request is merged.
+\
 Bitbucket Post Webhooks allow sending JSON data to any HTTP or HTTPS address when any of the selected events occur.
 Marketplace Plugin Page - [Post Webhooks for Bitbucket](https://marketplace.atlassian.com/apps/1215474/post-webhooks-for-bitbucket?tab=overview&hosting=datacenter).
+\
 API Reference - [Atlassian Bitbucket Post Webhook API](https://help.moveworkforward.com/BPW/atlassian-bitbucket-post-webhook-api#AtlassianBitbucketPostWebhookAPI-Getconfigurations).
 
 ## Example Usage
