@@ -17,21 +17,19 @@ type PostWebhook struct {
 	Enabled           bool   `json:"enabled,omitempty"`
 	CommitersToIgnore string `json:"commitersToIgnore,omitempty"`
 	BranchesToIgnore  string `json:"branchesToIgnore,omitempty"`
-	//SkipCI            bool   `json:"skipCI,omitempty"`
-	TagCreated    bool `json:"tagCreated,omitempty"`
-	BranchDeleted bool `json:"branchDeleted,omitempty"`
-	BranchCreated bool `json:"branchCreated,omitempty"`
-	RepoPush      bool `json:"repoPush,omitempty"`
-	PrDeclined    bool `json:"prDeclined,omitempty"`
-	PrRescoped    bool `json:"prRescoped,omitempty"`
-	PrMerged      bool `json:"prMerged,omitempty"`
-	PrReopened    bool `json:"prReopened,omitempty"`
-	PrUpdated     bool `json:"prUpdated,omitempty"`
-	PrCreated     bool `json:"prCreated,omitempty"`
-	PrCommented   bool `json:"prCommented,omitempty"`
-	//PrDeleted         bool   `json:"prDeleted,omitempty"`
-	BuildStatus      bool `json:"buildStatus,omitempty"`
-	RepoMirrorSynced bool `json:"repoMirrorSynced,omitempty"`
+	TagCreated        bool   `json:"tagCreated,omitempty"`
+	BranchDeleted     bool   `json:"branchDeleted,omitempty"`
+	BranchCreated     bool   `json:"branchCreated,omitempty"`
+	RepoPush          bool   `json:"repoPush,omitempty"`
+	PrDeclined        bool   `json:"prDeclined,omitempty"`
+	PrRescoped        bool   `json:"prRescoped,omitempty"`
+	PrMerged          bool   `json:"prMerged,omitempty"`
+	PrReopened        bool   `json:"prReopened,omitempty"`
+	PrUpdated         bool   `json:"prUpdated,omitempty"`
+	PrCreated         bool   `json:"prCreated,omitempty"`
+	PrCommented       bool   `json:"prCommented,omitempty"`
+	BuildStatus       bool   `json:"buildStatus,omitempty"`
+	RepoMirrorSynced  bool   `json:"repoMirrorSynced,omitempty"`
 }
 
 type PostWebhookListResponse struct {
@@ -331,5 +329,5 @@ func getRepositoryPostWebhookFromList(d *schema.ResourceData, m interface{}) err
 		}
 	}
 
-	return fmt.Errorf("incorrect ID format, should match `project/repository/name`")
+	return fmt.Errorf("incorrect ID format, should match `project/repository/title`")
 }
