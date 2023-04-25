@@ -11,19 +11,19 @@ API Reference - [Atlassian Bitbucket Post Webhook API](https://help.moveworkforw
 ## Example Usage
 
 ```hcl
-resource "bitbucketserver_project" "myproj" {
+resource "bitbucketserver_project" "test" {
   key  = "MYPROJ"
   name = "my-project"
 }
 
-resource "bitbucketserver_repository" "repo" {
-  project = bitbucketserver_project.myproj.key
-  name    = "repo"
+resource "bitbucketserver_repository" "test" {
+  project = bitbucketserver_project.test.key
+  name    = "my-repo"
 }
 
 resource "bitbucketserver_repository_postwebhook" "jenkins" {
-  project             = bitbucketserver_project.myproj.key
-  repository          = bitbucketserver_repository.repo.slug
+  project             = bitbucketserver_project.test.key
+  repository          = bitbucketserver_repository.test.slug
   title               = "Jenkins"
   webhook_url         = "https://jenkins.example.com/bitbucket-hook"
   commiters_to_ignore = "john.doe,jane.doe"
