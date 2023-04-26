@@ -42,7 +42,7 @@ resource "bitbucketserver_repository_postwebhook" "jenkins" {
 * `webhook_url` - Required. The URL of the post webhook.
 * `committers_to_ignore` - Optional. Comma separated list of usernames. Commits from these users do not trigger this hook.
 * `branches_to_ignore` - Optional. Regex for branches. Commits on these branches do not trigger this hook.
-* `active` - Optional. Enable or disable the webhook. Default: true
+* `enabled` - Optional. Enable or disable the webhook. Default: true
 * `repo_push` - Optional. Event On push. Default: false
 * `branch_deleted` - Optional. Event Branch deleted. Default: false
 * `branch_created` - Optional. Event Branch created. Default: false
