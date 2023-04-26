@@ -26,7 +26,7 @@ resource "bitbucketserver_repository_postwebhook" "jenkins" {
   repository          = bitbucketserver_repository.test.slug
   title               = "Jenkins"
   webhook_url         = "https://jenkins.example.com/bitbucket-hook"
-  commiters_to_ignore = "john.doe,jane.doe"
+  committers_to_ignore = "john.doe,jane.doe"
   branches_to_ignore  = "release/.*"
   enabled             = true
   repo_push           = true
@@ -40,7 +40,7 @@ resource "bitbucketserver_repository_postwebhook" "jenkins" {
 * `repository` - Required. Slug of the repository to which the post webhook will belong.
 * `title` - Required. Title of the post webhook.
 * `webhook_url` - Required. The URL of the post webhook.
-* `commiters_to_ignore` - Optional. Comma separated list of usernames. Commits from these users do not trigger this hook.
+* `committers_to_ignore` - Optional. Comma separated list of usernames. Commits from these users do not trigger this hook.
 * `branches_to_ignore` - Optional. Regex for branches. Commits on these branches do not trigger this hook.
 * `active` - Optional. Enable or disable the webhook. Default: true
 * `repo_push` - Optional. Event On push. Default: false
