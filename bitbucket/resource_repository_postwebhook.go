@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"strings"
 
 	"github.com/hashicorp/terraform/helper/schema"
@@ -17,23 +17,19 @@ type PostWebhook struct {
 	Enabled            bool   `json:"enabled,omitempty"`
 	CommittersToIgnore string `json:"committersToIgnore,omitempty"`
 	BranchesToIgnore   string `json:"branchesToIgnore,omitempty"`
-	TagCreated         bool   `json:"tagCreated,omitempty"`
-	BranchDeleted      bool   `json:"branchDeleted,omitempty"`
-	BranchCreated      bool   `json:"branchCreated,omitempty"`
-	RepoPush           bool   `json:"repoPush,omitempty"`
-	PrDeclined         bool   `json:"prDeclined,omitempty"`
-	PrRescoped         bool   `json:"prRescoped,omitempty"`
-	PrMerged           bool   `json:"prMerged,omitempty"`
-	PrReopened         bool   `json:"prReopened,omitempty"`
-	PrUpdated          bool   `json:"prUpdated,omitempty"`
-	PrCreated          bool   `json:"prCreated,omitempty"`
-	PrCommented        bool   `json:"prCommented,omitempty"`
-	BuildStatus        bool   `json:"buildStatus,omitempty"`
-	RepoMirrorSynced   bool   `json:"repoMirrorSynced,omitempty"`
-}
-
-type PostWebhookListResponse struct {
-	Values []PostWebhook `json:"$"`
+	TagCreated         bool   `json:"tagCreated"`
+	BranchDeleted      bool   `json:"branchDeleted"`
+	BranchCreated      bool   `json:"branchCreated"`
+	RepoPush           bool   `json:"repoPush"`
+	PrDeclined         bool   `json:"prDeclined"`
+	PrRescoped         bool   `json:"prRescoped"`
+	PrMerged           bool   `json:"prMerged"`
+	PrReopened         bool   `json:"prReopened"`
+	PrUpdated          bool   `json:"prUpdated"`
+	PrCreated          bool   `json:"prCreated"`
+	PrCommented        bool   `json:"prCommented"`
+	BuildStatus        bool   `json:"buildStatus"`
+	RepoMirrorSynced   bool   `json:"repoMirrorSynced"`
 }
 
 func resourceRepositoryPostWebhook() *schema.Resource {
@@ -204,7 +200,7 @@ func resourceRepositoryPostWebhookCreate(d *schema.ResourceData, m interface{}) 
 
 	var webhookResponse PostWebhook
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 
 	if err != nil {
 		return err
@@ -295,17 +291,21 @@ func getRepositoryPostWebhookFromList(d *schema.ResourceData, m interface{}) err
 		return err
 	}
 
-	var webhookListResponse PostWebhookListResponse
+	var webhookListResponse []PostWebhook
 
-	decoder := json.NewDecoder(resp.Body)
-
-	err = decoder.Decode(&webhookListResponse)
+	body, err := io.ReadAll(resp.Body)
 
 	if err != nil {
 		return err
 	}
 
-	for _, webhook := range webhookListResponse.Values {
+	err = json.Unmarshal(body, &webhookListResponse)
+
+	if err != nil {
+		return err
+	}
+
+	for _, webhook := range webhookListResponse {
 		if webhook.Title == title {
 			_ = d.Set("webhook_id", webhook.ID)
 			_ = d.Set("webhook_url", webhook.URL)
