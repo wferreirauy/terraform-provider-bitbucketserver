@@ -11,25 +11,25 @@ import (
 )
 
 type PostWebhook struct {
-	ID                int    `json:"id,omitempty"`
-	Title             string `json:"title,omitempty"`
-	URL               string `json:"url,omitempty"`
-	Enabled           bool   `json:"enabled,omitempty"`
-	CommitersToIgnore string `json:"commitersToIgnore,omitempty"`
-	BranchesToIgnore  string `json:"branchesToIgnore,omitempty"`
-	TagCreated        bool   `json:"tagCreated,omitempty"`
-	BranchDeleted     bool   `json:"branchDeleted,omitempty"`
-	BranchCreated     bool   `json:"branchCreated,omitempty"`
-	RepoPush          bool   `json:"repoPush,omitempty"`
-	PrDeclined        bool   `json:"prDeclined,omitempty"`
-	PrRescoped        bool   `json:"prRescoped,omitempty"`
-	PrMerged          bool   `json:"prMerged,omitempty"`
-	PrReopened        bool   `json:"prReopened,omitempty"`
-	PrUpdated         bool   `json:"prUpdated,omitempty"`
-	PrCreated         bool   `json:"prCreated,omitempty"`
-	PrCommented       bool   `json:"prCommented,omitempty"`
-	BuildStatus       bool   `json:"buildStatus,omitempty"`
-	RepoMirrorSynced  bool   `json:"repoMirrorSynced,omitempty"`
+	ID                 int    `json:"id,omitempty"`
+	Title              string `json:"title,omitempty"`
+	URL                string `json:"url,omitempty"`
+	Enabled            bool   `json:"enabled,omitempty"`
+	CommittersToIgnore string `json:"committersToIgnore,omitempty"`
+	BranchesToIgnore   string `json:"branchesToIgnore,omitempty"`
+	TagCreated         bool   `json:"tagCreated,omitempty"`
+	BranchDeleted      bool   `json:"branchDeleted,omitempty"`
+	BranchCreated      bool   `json:"branchCreated,omitempty"`
+	RepoPush           bool   `json:"repoPush,omitempty"`
+	PrDeclined         bool   `json:"prDeclined,omitempty"`
+	PrRescoped         bool   `json:"prRescoped,omitempty"`
+	PrMerged           bool   `json:"prMerged,omitempty"`
+	PrReopened         bool   `json:"prReopened,omitempty"`
+	PrUpdated          bool   `json:"prUpdated,omitempty"`
+	PrCreated          bool   `json:"prCreated,omitempty"`
+	PrCommented        bool   `json:"prCommented,omitempty"`
+	BuildStatus        bool   `json:"buildStatus,omitempty"`
+	RepoMirrorSynced   bool   `json:"repoMirrorSynced,omitempty"`
 }
 
 type PostWebhookListResponse struct {
@@ -76,7 +76,7 @@ func resourceRepositoryPostWebhook() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"commiters_to_ignore": {
+			"committers_to_ignore": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -256,24 +256,24 @@ func resourceRepositoryPostWebhookDelete(d *schema.ResourceData, m interface{}) 
 
 func newPostWebhookFromResource(d *schema.ResourceData) (Hook *PostWebhook) {
 	webhook := &PostWebhook{
-		Title:             d.Get("title").(string),
-		URL:               d.Get("webhook_url").(string),
-		Enabled:           d.Get("enabled").(bool),
-		CommitersToIgnore: d.Get("commiters_to_ignore").(string),
-		BranchesToIgnore:  d.Get("branches_to_ignore").(string),
-		TagCreated:        d.Get("tag_created").(bool),
-		BranchDeleted:     d.Get("branch_deleted").(bool),
-		BranchCreated:     d.Get("branch_created").(bool),
-		RepoPush:          d.Get("repo_push").(bool),
-		PrDeclined:        d.Get("pr_declined").(bool),
-		PrRescoped:        d.Get("pr_rescoped").(bool),
-		PrMerged:          d.Get("pr_merged").(bool),
-		PrReopened:        d.Get("pr_reopened").(bool),
-		PrUpdated:         d.Get("pr_updated").(bool),
-		PrCreated:         d.Get("pr_created").(bool),
-		PrCommented:       d.Get("pr_commented").(bool),
-		BuildStatus:       d.Get("build_status").(bool),
-		RepoMirrorSynced:  d.Get("repo_mirror_synced").(bool),
+		Title:              d.Get("title").(string),
+		URL:                d.Get("webhook_url").(string),
+		Enabled:            d.Get("enabled").(bool),
+		CommittersToIgnore: d.Get("committers_to_ignore").(string),
+		BranchesToIgnore:   d.Get("branches_to_ignore").(string),
+		TagCreated:         d.Get("tag_created").(bool),
+		BranchDeleted:      d.Get("branch_deleted").(bool),
+		BranchCreated:      d.Get("branch_created").(bool),
+		RepoPush:           d.Get("repo_push").(bool),
+		PrDeclined:         d.Get("pr_declined").(bool),
+		PrRescoped:         d.Get("pr_rescoped").(bool),
+		PrMerged:           d.Get("pr_merged").(bool),
+		PrReopened:         d.Get("pr_reopened").(bool),
+		PrUpdated:          d.Get("pr_updated").(bool),
+		PrCreated:          d.Get("pr_created").(bool),
+		PrCommented:        d.Get("pr_commented").(bool),
+		BuildStatus:        d.Get("build_status").(bool),
+		RepoMirrorSynced:   d.Get("repo_mirror_synced").(bool),
 	}
 
 	return webhook
@@ -310,7 +310,7 @@ func getRepositoryPostWebhookFromList(d *schema.ResourceData, m interface{}) err
 			_ = d.Set("webhook_id", webhook.ID)
 			_ = d.Set("webhook_url", webhook.URL)
 			_ = d.Set("enabled", webhook.Enabled)
-			_ = d.Set("commiters_to_ignore", webhook.CommitersToIgnore)
+			_ = d.Set("committers_to_ignore", webhook.CommittersToIgnore)
 			_ = d.Set("branches_to_ignore", webhook.BranchesToIgnore)
 			_ = d.Set("tag_created", webhook.TagCreated)
 			_ = d.Set("branch_deleted", webhook.BranchDeleted)
