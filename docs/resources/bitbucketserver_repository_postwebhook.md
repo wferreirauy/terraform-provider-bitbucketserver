@@ -22,15 +22,15 @@ resource "bitbucketserver_repository" "test" {
 }
 
 resource "bitbucketserver_repository_postwebhook" "jenkins" {
-  project             = bitbucketserver_project.test.key
-  repository          = bitbucketserver_repository.test.slug
-  title               = "Jenkins"
-  webhook_url         = "https://jenkins.example.com/bitbucket-hook"
+  project              = bitbucketserver_project.test.key
+  repository           = bitbucketserver_repository.test.slug
+  title                = "Jenkins"
+  webhook_url          = "https://jenkins.example.com/bitbucket-hook"
   committers_to_ignore = "john.doe,jane.doe"
-  branches_to_ignore  = "release/.*"
-  enabled             = true
-  repo_push           = true
-  pr_merged           = true
+  branches_to_ignore   = "release/.*"
+  enabled              = true
+  repo_push            = true
+  pr_merged            = true
 }
 ```
 
