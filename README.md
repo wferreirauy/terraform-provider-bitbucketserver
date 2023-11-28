@@ -1,5 +1,7 @@
 # Bitbucket Server Terraform Provider
 
+**This version of Terraform bitbucketserver provider adds support for [Bitbucket Post Webhooks](https://marketplace.atlassian.com/apps/1215474/post-webhooks-for-bitbucket?tab=overview&hosting=datacenter)** 
+
 [![user guide](https://img.shields.io/badge/-user%20guide-blue)](https://registry.terraform.io/providers/wferreirauy/bitbucketserver/latest)
 
 This terraform provider allows management of **Bitbucket Server** resources. The bundled terraform bitbucket provider works only for Bitbucket Cloud.
