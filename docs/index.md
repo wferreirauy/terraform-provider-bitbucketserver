@@ -1,5 +1,7 @@
 # Bitbucket Server Provider
 
+**This version of Terraform bitbucketserver provider adds support for [Bitbucket Post Webhooks](https://marketplace.atlassian.com/apps/1215474/post-webhooks-for-bitbucket?tab=overview&hosting=datacenter)** 
+
 [Bitbucket Server](https://www.atlassian.com/software/bitbucket) is the self-hosted version of Bitbucket.
 Whilst terraform provides a default bitbucket provider, this only works for _Bitbucket Cloud_ - this provider
 unlocks the power of terraform to manage your self-hosted Bitbucket Server instance. 
